@@ -11,9 +11,32 @@ John H Conway（1937-2020）于1970年发明生命游戏，一种二维的元胞
 3. 1个活细胞相邻恰好2个或3个活细胞时，将存活；
 4. 1个死细胞相邻恰好3个活细胞时，将复活。
 
+## 功能介绍
+
+目前提供以下4种初始化模式：
+
+1. **init_random**()，以`live_ratio`为存活率随机生成活细胞。
+2. **init_blinker**()，一种振荡状态，在全局每个5x5的单元中设置活细胞。
+3. **init_beacon**()，一种振荡状态，在全局每个6x6的单元中设置活细胞。
+4. **init_glider**()，一种会移动的振荡状态，在左上角设置。
+
 ## 效果展示
 
+### **random**
+
 ![gol](gol.gif)
+
+### blinker
+
+![blinker](blinker.gif)
+
+### beacon
+
+![beacom](beacon.gif)
+
+### glider
+
+![glider](glider.gif)
 
 ## 运行方式
 

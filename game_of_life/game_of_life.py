@@ -1,6 +1,6 @@
 import taichi as ti
 
-ti.init(arch=ti.cpu)
+ti.init(arch=ti.gpu)
 
 N = 128
 M = 3*N
@@ -84,21 +84,21 @@ init_random()
 # init_glider()
 next_gen = cells
 
-# while gui.running:
-#     evolve()
-#     cells = next_gen
-#     zoom_in()
-#     gui.set_image(pixels)
-#     gui.show()
-
-# Export to pngs and convert to mp4/gif.
-# ti video -f 50
-# ti gif -i video.mp4
-for i in range(300):
+while gui.running:
     evolve()
     cells = next_gen
     zoom_in()
     gui.set_image(pixels)
-    filename = f'frame_{i:05d}.png'
-    print(f'Frame {i} is recorded in {filename}')
-    gui.show(filename)
+    gui.show()
+
+# Export to pngs and convert to mp4/gif.
+# ti video -f 50
+# ti gif -i video.mp4
+# for i in range(300):
+#     evolve()
+#     cells = next_gen
+#     zoom_in()
+#     gui.set_image(pixels)
+#     filename = f'frame_{i:05d}.png'
+#     print(f'Frame {i} is recorded in {filename}')
+#     gui.show(filename)
