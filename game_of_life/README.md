@@ -44,3 +44,11 @@ John H Conway（1937-2020）于1970年发明生命游戏，一种二维的元胞
 python game_of_life.py
 ```
 
+### 生成GIF
+
+```
+ti video -f 50
+ti gif -i video.mp4
+```
+
+生成video.gif。
