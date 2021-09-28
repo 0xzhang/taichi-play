@@ -78,17 +78,26 @@ def evolve():
 
 @ti.kernel
 def zoom_in():
-    scale = N/M
-    for i, j in pixels:
-        pixels[i, j] = cells[int(i*scale), int(j*scale)]
+    # Limitations:
+    assert M >= N
+    scale = int(M/N)
+    # Increased computation, but more precise to deal each pixel.
+    for i, j in cells:
+        for x in range(scale):
+            for y in range(scale):
+                pixels[scale*i+x, scale*j+y] = cells[i, j]
+
+    # scale = N/M
+    # for i, j in pixels:
+    #     pixels[i, j] = cells[int(i*scale), int(j*scale)]
 
 
 gui = ti.GUI("Game of Life", res=(M, M))
 
-# init_random()
+init_random()
 # init_blinker()
 # init_beacon()
-init_glider()
+# init_glider()
 
 while gui.running:
     evolve()
@@ -97,8 +106,6 @@ while gui.running:
     gui.show()
 
 # Export to pngs and convert to mp4/gif.
-# ti video -f 50
-# ti gif -i video.mp4
 # for i in range(300):
 #     evolve()
 #     zoom_in()
