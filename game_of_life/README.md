@@ -22,21 +22,13 @@ John H Conway（1937-2020）于1970年发明生命游戏，一种二维的元胞
 
 ## 效果展示
 
-### **random**
+<img src="gol.gif" height=192px title="random">
 
-![gol](gol.gif)
+<img src="glider.gif" height=192px title="glider">
 
-### blinker
+<img src="blinker.gif" height=192px title="blinker">
 
-![blinker](blinker.gif)
-
-### beacon
-
-![beacom](beacon.gif)
-
-### glider
-
-![glider](glider.gif)
+<img src="beacon.gif" height=192px title="beacon">
 
 ## 运行方式
 
