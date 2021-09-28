@@ -4,7 +4,7 @@
 
 ## 效果展示
 
-### [Game of Life](game_of_life/README.md)
+### [Game of Life](game_of_life/)
 
 ![gol](game_of_life/gol.gif)
 
