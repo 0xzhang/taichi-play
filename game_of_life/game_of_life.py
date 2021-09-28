@@ -3,11 +3,12 @@ import taichi as ti
 ti.init(arch=ti.gpu)
 
 N = 128
+# How many pixels do you want to represent one cell?
 M = 3*N
 
 live_ratio = 0.6
-cells = ti.field(ti.f32, shape=(N, N))
-next_gen = ti.field(ti.f32, shape=(N, N))
+cells = ti.field(ti.i32, shape=(N, N))
+new_cells = ti.field(ti.i32, shape=(N, N))
 pixels = ti.field(ti.f32, shape=(M, M))
 
 
@@ -55,38 +56,42 @@ def init_glider():
 
 @ti.kernel
 def evolve():
+    for i, j in cells:
+        new_cells[i, j] = cells[i, j]
+
     neighbors = 0
     for i, j in cells:
-        neighbors = int(cells[(i-1) % N, (j-1) % N]+cells[i, (j-1) % N] +
-                        cells[(i+1) % N, (j-1) % N] + cells[(i-1) % N, j] +
-                        cells[(i+1) % N, j] + cells[(i-1) % N, (j+1) % N] +
-                        cells[i, (j+1) % N]+cells[(i+1) % N, (j+1) % N])
+        neighbors = (cells[(i-1) % N, (j-1) % N] + cells[i, (j-1) % N]
+                     + cells[(i+1) % N, (j-1) % N] + cells[(i-1) % N, j]
+                     + cells[(i+1) % N, j] + cells[(i-1) % N, (j+1) % N]
+                     + cells[i, (j+1) % N] + cells[(i+1) % N, (j+1) % N])
         if cells[i, j] == 1:
             if (neighbors < 2) or (neighbors > 3):
-                next_gen[i, j] = 0
+                new_cells[i, j] = 0
         else:
             if neighbors == 3:
-                next_gen[i, j] = 1
+                new_cells[i, j] = 1
+
+    for i, j in cells:
+        cells[i, j] = new_cells[i, j]
 
 
 @ti.kernel
 def zoom_in():
-    scale = M/N
+    scale = N/M
     for i, j in pixels:
-        pixels[i, j] = cells[int(i/scale), int(j/scale)]
+        pixels[i, j] = cells[int(i*scale), int(j*scale)]
 
 
 gui = ti.GUI("Game of Life", res=(M, M))
 
-init_random()
+# init_random()
 # init_blinker()
 # init_beacon()
-# init_glider()
-next_gen = cells
+init_glider()
 
 while gui.running:
     evolve()
-    cells = next_gen
     zoom_in()
     gui.set_image(pixels)
     gui.show()
@@ -96,7 +101,6 @@ while gui.running:
 # ti gif -i video.mp4
 # for i in range(300):
 #     evolve()
-#     cells = next_gen
 #     zoom_in()
 #     gui.set_image(pixels)
 #     filename = f'frame_{i:05d}.png'
