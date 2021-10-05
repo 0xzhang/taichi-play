@@ -4,7 +4,7 @@ ti.init(arch=ti.gpu)
 
 N = 128
 # How many pixels do you want to represent one cell?
-M = 3*N
+M = 3 * N
 
 live_ratio = 0.6
 cells = ti.field(ti.i32, shape=(N, N))
@@ -14,57 +14,58 @@ pixels = ti.field(ti.f32, shape=(M, M))
 
 @ti.kernel
 def init_random():
-    for i, j in cells:
+    for I in ti.grouped(cells):
         val = ti.random()
-        if(val < live_ratio):
-            cells[i, j] = 1
+        if (val < live_ratio):
+            cells[I] = 1
 
 
 @ti.kernel
 def init_blinker():
     step = 5
-    iters = N/step
+    iters = N / step
     for i in range(0, iters):
         for j in range(0, iters):
-            cells[step*i + 1, step*j+2] = 1
-            cells[step*i + 2, step*j+2] = 1
-            cells[step*i + 3, step*j+2] = 1
+            cells[step * i + 1, step * j + 2] = 1
+            cells[step * i + 2, step * j + 2] = 1
+            cells[step * i + 3, step * j + 2] = 1
 
 
 @ti.kernel
 def init_beacon():
     step = 6
-    iters = N/step
+    iters = N / step
     for i in range(0, iters):
         for j in range(0, iters):
-            cells[step*i + 1, step*j+3] = 1
-            cells[step*i + 2, step*j+4] = 1
-            cells[step*i + 1, step*j+4] = 1
-            cells[step*i + 3, step*j+1] = 1
-            cells[step*i + 4, step*j+1] = 1
-            cells[step*i + 4, step*j+2] = 1
+            cells[step * i + 1, step * j + 3] = 1
+            cells[step * i + 2, step * j + 4] = 1
+            cells[step * i + 1, step * j + 4] = 1
+            cells[step * i + 3, step * j + 1] = 1
+            cells[step * i + 4, step * j + 1] = 1
+            cells[step * i + 4, step * j + 2] = 1
 
 
 @ti.kernel
 def init_glider():
-    cells[0, N-2] = 1
-    cells[1, N-3] = 1
-    cells[2, N-1] = 1
-    cells[2, N-2] = 1
-    cells[2, N-3] = 1
+    assert N > 3
+    cells[0, N - 2] = 1
+    cells[1, N - 3] = 1
+    cells[2, N - 1] = 1
+    cells[2, N - 2] = 1
+    cells[2, N - 3] = 1
 
 
 @ti.kernel
 def evolve():
-    for i, j in cells:
-        new_cells[i, j] = cells[i, j]
+    for I in ti.grouped(cells):
+        new_cells[I] = cells[I]
 
     neighbors = 0
     for i, j in cells:
-        neighbors = (cells[(i-1) % N, (j-1) % N] + cells[i, (j-1) % N]
-                     + cells[(i+1) % N, (j-1) % N] + cells[(i-1) % N, j]
-                     + cells[(i+1) % N, j] + cells[(i-1) % N, (j+1) % N]
-                     + cells[i, (j+1) % N] + cells[(i+1) % N, (j+1) % N])
+        neighbors = (cells[(i - 1) % N, (j - 1) % N] + cells[i, (j - 1) % N] +
+                     cells[(i + 1) % N, (j - 1) % N] + cells[(i - 1) % N, j] +
+                     cells[(i + 1) % N, j] + cells[(i - 1) % N, (j + 1) % N] +
+                     cells[i, (j + 1) % N] + cells[(i + 1) % N, (j + 1) % N])
         if cells[i, j] == 1:
             if (neighbors < 2) or (neighbors > 3):
                 new_cells[i, j] = 0
@@ -72,44 +73,49 @@ def evolve():
             if neighbors == 3:
                 new_cells[i, j] = 1
 
-    for i, j in cells:
-        cells[i, j] = new_cells[i, j]
+    for I in ti.grouped(cells):
+        cells[I] = new_cells[I]
 
 
 @ti.kernel
 def zoom_in():
     # Limitations:
     assert M >= N
-    scale = int(M/N)
+    scale = int(M / N)
     # Increased computation, but more precise to deal each pixel.
     for i, j in cells:
         for x in range(scale):
             for y in range(scale):
-                pixels[scale*i+x, scale*j+y] = cells[i, j]
+                pixels[scale * i + x, scale * j + y] = cells[i, j]
 
     # scale = N/M
     # for i, j in pixels:
     #     pixels[i, j] = cells[int(i*scale), int(j*scale)]
 
 
-gui = ti.GUI("Game of Life", res=(M, M))
+def main():
+    gui = ti.GUI("Game of Life", res=(M, M))
 
-init_random()
-# init_blinker()
-# init_beacon()
-# init_glider()
+    init_random()
+    # init_blinker()
+    # init_beacon()
+    # init_glider()
 
-while gui.running:
-    evolve()
-    zoom_in()
-    gui.set_image(pixels)
-    gui.show()
+    while gui.running:
+        evolve()
+        zoom_in()
+        gui.set_image(pixels)
+        gui.show()
 
-# Export to pngs and convert to mp4/gif.
-# for i in range(300):
-#     evolve()
-#     zoom_in()
-#     gui.set_image(pixels)
-#     filename = f'frame_{i:05d}.png'
-#     print(f'Frame {i} is recorded in {filename}')
-#     gui.show(filename)
+    # Export to pngs and convert to mp4/gif.
+    # for i in range(300):
+    #     evolve()
+    #     zoom_in()
+    #     gui.set_image(pixels)
+    #     filename = f'frame_{i:05d}.png'
+    #     print(f'Frame {i} is recorded in {filename}')
+    #     gui.show(filename)
+
+
+if __name__ == '__main__':
+    main()
