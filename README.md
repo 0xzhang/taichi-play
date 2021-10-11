@@ -51,6 +51,4 @@ ti gif -i video.mp4
 
 ### 使用GGUI时生成GIF
 
-**ScreenToGif**
-
-[Release ScreenToGif 2.34 · NickeManarin/ScreenToGif (github.com)](https://github.com/NickeManarin/ScreenToGif/releases/tag/2.34)
+[ScreenToGif](https://github.com/NickeManarin/ScreenToGif/releases/tag/2.34)
