@@ -6,7 +6,11 @@
 
 ### [Game of Life](game_of_life/)
 
-![gol](game_of_life/gol.gif)
+![gol](game_of_life/imgs/gol.gif)
+
+[Solar System](solar_system/)
+
+<img src="solar_system/imgs/solar_system.png" alt="gol" style="zoom:50%;" />
 
 ## 整体结构
 
@@ -15,12 +19,19 @@
 ├── README.md
 ├── game_of_life
 │   ├── README.md
-│   ├── beacon.gif
-│   ├── blinker.gif
 │   ├── game_of_life.py
-│   ├── glider.gif
-│   └── gol.gif
-└── requirements.txt
+│   └── imgs
+│       ├── beacon.gif
+│       ├── blinker.gif
+│       ├── glider.gif
+│       └── gol.gif
+├── requirements.txt
+└── solar_system
+    ├── README.md
+    ├── imgs
+    │   └── solar_system.png
+    ├── main.py
+    └── solar_system.py
 ```
 
 ## 运行环境
