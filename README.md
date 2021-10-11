@@ -8,7 +8,7 @@
 
 ![gol](game_of_life/imgs/gol.gif)
 
-[Solar System](solar_system/)
+### [Solar System](solar_system/)
 
 <img src="solar_system/imgs/solar_system.png" alt="gol" style="zoom:50%;" />
 
