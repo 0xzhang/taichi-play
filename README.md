@@ -10,37 +10,37 @@
 
 ### [Solar System](solar_system/)
 
-<img src="solar_system/imgs/solar_system.png" alt="gol" style="zoom:50%;" />
+![ss](solar_system/imgs/ss.gif)
 
 ## 整体结构
 
 ```
 ├── LICENSE
-├── README.md
-├── game_of_life
-│   ├── README.md
-│   ├── game_of_life.py
-│   └── imgs
-│       ├── beacon.gif
-│       ├── blinker.gif
-│       ├── glider.gif
-│       └── gol.gif
 ├── requirements.txt
-└── solar_system
-    ├── README.md
-    ├── imgs
-    │   └── solar_system.png
-    ├── main.py
-    └── solar_system.py
+├── game_of_life
+│   ├── game_of_life.py
+│   ├── imgs
+│   │   ├── beacon.gif
+│   │   ├── blinker.gif
+│   │   ├── glider.gif
+│   │   └── gol.gif
+│   └── README.md
+├── solar_system
+│   ├── solar_system.py
+│   ├── README.md
+│   ├── main.py
+│   └── imgs
+│       └── ss.gif
+└── README.md
 ```
 
 ## 运行环境
 
 ```
-[Taichi] version 0.7.32, llvm 10.0.0, commit 6652f94f, linux, python 3.8.8
+[Taichi] version 0.8.1, llvm 10.0.0, commit cc2dd342, win, python 3.8.10
 ```
 
-## 生成GIF
+### 使用GUI时生成GIF
 
 在图片目录下
 
@@ -49,3 +49,8 @@ ti video -f 50
 ti gif -i video.mp4
 ```
 
+### 使用GGUI时生成GIF
+
+**ScreenToGif**
+
+[Release ScreenToGif 2.34 · NickeManarin/ScreenToGif (github.com)](https://github.com/NickeManarin/ScreenToGif/releases/tag/2.34)

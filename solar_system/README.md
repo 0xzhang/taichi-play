@@ -2,34 +2,34 @@
 
 ## 背景介绍
 
-太阳系模拟。
+宇宙中包含许多像太阳系这样的行星系统，行星围绕着恒星运行。太阳系位于银河系的外旋壁上，
 
-使用2018-01-01这一天的天体数据。
+参考了知乎文章[用86行Python代码模拟太阳系](https://zhuanlan.zhihu.com/p/102375135)作者**何崇崇**模拟太阳系使用的计算方法，使用Taichi的GGUI编写了3D的太阳系模拟。
+
+在作者的代码仓库中**get_initial_condition.py**提供了获取天体数据的方式，但是对JPL实验室API `ssd.jpl.nasa.gov/api/horizons.api`的请求没有响应。目前使用了作者提供的2018-01-01这一天的天体数据。
 
 ### 功能介绍
 
-水星、金星、地球、火星比例接近真实值，为了能够看到这些行星，太阳并非真实大小。
+水星、金星、地球、火星比例接近实际，为了能够清楚的看到这些行星，太阳大小并非真实比例。
 
 木星的轨道半径非常大，会影响到地球的观测，暂时未加入更大轨道上的行星。
 
+没有学习过图形学，对于相机、光线的控制不太熟悉，大概是时候补习下GAMES101了:smile:
+
 ### TODO
 
-- 对于相机、光线的控制不太熟悉，交互需要改进。
-- 绘制天体运动的轨迹。
 - 加入太阳系的其它行星。
 - 加入地月系统。
 
 ## 效果展示
 
-<a href="gol.gif"><img src="imgs/solar_system.png" height=192px title="random"></a>
+<a href="gol.gif"><img src="imgs/ss.gif" height=600px title="random"></a>
 
 ## 运行方式
 
 ```shell
 python main.py
 ```
-
-似乎是一个bug，GGUI不能使用shape=()的field，但是shape=1是可以的。
 
 ## 参考资料
 
@@ -42,7 +42,7 @@ python main.py
 
 ## 附录
 
-太阳系（Solar System）。
+### Solar System
 
 | Solar System |   Numbers |
 | ------------ | --------: |
