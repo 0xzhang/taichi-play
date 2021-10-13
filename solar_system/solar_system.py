@@ -1,6 +1,10 @@
 import taichi as ti
 from datetime import datetime, timedelta
 
+# Length of Year
+# Tricky: I use many small spheres(call `scene.particles()``)
+# to represent the orbit of planets.
+# If dt is too small, 8000 is not enough, the orbit will be an arc.
 LOY = 8000
 
 

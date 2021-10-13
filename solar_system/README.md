@@ -2,11 +2,11 @@
 
 ## 背景介绍
 
-宇宙中包含许多像太阳系这样的行星系统，行星围绕着恒星运行。太阳系位于银河系的外旋壁上，
+宇宙中包含许多像太阳系这样的行星系统，行星围绕着恒星运行，太阳系位于银河系的外旋壁上。
 
-参考了知乎文章[用86行Python代码模拟太阳系](https://zhuanlan.zhihu.com/p/102375135)作者**何崇崇**模拟太阳系使用的计算方法，使用Taichi的GGUI编写了3D的太阳系模拟。
+参考了知乎文章[用86行Python代码模拟太阳系](https://zhuanlan.zhihu.com/p/102375135)作者**何崇崇**模拟太阳系使用的计算方法，使用Taichi的OOP和GGUI编写了3D的太阳系模拟。
 
-在作者的代码仓库中**get_initial_condition.py**提供了获取天体数据的方式，但是对JPL实验室API `ssd.jpl.nasa.gov/api/horizons.api`的请求没有响应。目前使用了作者提供的2018-01-01这一天的天体数据。
+在作者的代码仓库中`get_initial_condition.py`提供了获取天体数据的方式，但是对JPL实验室API `ssd.jpl.nasa.gov/api/horizons.api`的请求没有响应，因此目前使用了作者提供的2018-01-01这一天的天体数据。
 
 ### 功能介绍
 
@@ -33,12 +33,13 @@ python main.py
 
 ## 参考资料
 
-1. [用86行Python代码模拟太阳系 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/102375135)
-2. [chongchonghe/Python-solar-system (github.com)](https://github.com/chongchonghe/Python-solar-system)
-3. [Horizon API (nasa.gov)](https://ssd-api.jpl.nasa.gov/doc/horizons.html)
-4. [Home – NASA Solar System Exploration](https://solarsystem.nasa.gov/)
-5. [Planetary Physical Parameters (nasa.gov)](https://ssd.jpl.nasa.gov/planets/phys_par.html)
-6. [Build Your Solar System | SimPop](https://simpop.org/solar-system/solar-system.htm)
+1. [taichiCourse01/--Galaxy (github.com)](https://github.com/taichiCourse01/--Galaxy)
+2. [用86行Python代码模拟太阳系 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/102375135)
+3. [chongchonghe/Python-solar-system (github.com)](https://github.com/chongchonghe/Python-solar-system)
+4. [Horizon API (nasa.gov)](https://ssd-api.jpl.nasa.gov/doc/horizons.html)
+5. [Home – NASA Solar System Exploration](https://solarsystem.nasa.gov/)
+6. [Planetary Physical Parameters (nasa.gov)](https://ssd.jpl.nasa.gov/planets/phys_par.html)
+7. [Build Your Solar System | SimPop](https://simpop.org/solar-system/solar-system.htm)
 
 ## 附录
 
