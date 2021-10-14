@@ -3,9 +3,9 @@ import numpy as np
 
 ti.init(arch=ti.cpu)
 
-N = 128
+N = 64
 # How many pixels do you want to represent one cell?
-M = 5
+M = 8
 
 live_ratio = 0.6
 cells = ti.field(ti.i32, shape=(N, N))
@@ -22,11 +22,10 @@ def init():
 
 @ti.func
 def count(i, j):
-    neighbors[i,
-              j] = (cells[(i - 1) % N, (j - 1) % N] + cells[i, (j - 1) % N] +
-                    cells[(i + 1) % N, (j - 1) % N] + cells[(i - 1) % N, j] +
-                    cells[(i + 1) % N, j] + cells[(i - 1) % N, (j + 1) % N] +
-                    cells[i, (j + 1) % N] + cells[(i + 1) % N, (j + 1) % N])
+    neighbors[i, j] = (cells[i - 1, j - 1] + cells[i, j - 1] +
+                       cells[i + 1, j - 1] + cells[i - 1, j] +
+                       cells[i + 1, j] + cells[i - 1, j + 1] +
+                       cells[i, j + 1] + cells[i + 1, j + 1])
 
 
 @ti.kernel
@@ -49,6 +48,6 @@ if __name__ == '__main__':
     while gui.running:
         evolve()
 
-        # A handy method learned from `examples/simulation/game_of_life.py` for zoom in frame.
+        # A handy method learned from "taichi examples: game_of_life" for zoom in the frame.
         gui.set_image(ti.imresize(cells, M * N).astype(np.uint8) * 255)
         gui.show()

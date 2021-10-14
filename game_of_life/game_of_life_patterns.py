@@ -1,11 +1,11 @@
 import taichi as ti
 import numpy as np
 
-ti.init(arch=ti.gpu)
+ti.init(arch=ti.cpu)
 
-N = 128
+N = 32
 # How many pixels do you want to represent one cell?
-M = 5
+M = 16
 
 live_ratio = 0.6
 cells = ti.field(ti.i32, shape=(N, N))
@@ -57,11 +57,10 @@ def init_beacon():
 
 @ti.func
 def count(i, j):
-    neighbors[i,
-              j] = (cells[(i - 1) % N, (j - 1) % N] + cells[i, (j - 1) % N] +
-                    cells[(i + 1) % N, (j - 1) % N] + cells[(i - 1) % N, j] +
-                    cells[(i + 1) % N, j] + cells[(i - 1) % N, (j + 1) % N] +
-                    cells[i, (j + 1) % N] + cells[(i + 1) % N, (j + 1) % N])
+    neighbors[i, j] = (cells[i - 1, j - 1] + cells[i, j - 1] +
+                       cells[i + 1, j - 1] + cells[i - 1, j] +
+                       cells[i + 1, j] + cells[i - 1, j + 1] +
+                       cells[i, j + 1] + cells[i + 1, j + 1])
 
 
 @ti.kernel
@@ -80,8 +79,8 @@ def evolve():
 def main():
     gui = ti.GUI("Game of Life", res=(M * N, M * N))
 
-    init_random()
-    # init_glider()
+    # init_random()
+    init_glider()
     # init_blinker()
     # init_beacon()
 
