@@ -51,7 +51,7 @@ def init_solarsystem():
 def main():
     ss = init_solarsystem()
 
-    window = ti.ui.Window('Solar System', (800, 600))
+    window = ti.ui.Window('Solar System', (800, 600), vsync=True)
     canvas = window.get_canvas()
     scene = ti.ui.Scene()
     camera = ti.ui.make_camera()
@@ -62,6 +62,7 @@ def main():
 
     id_frame = 0
     pause_flag = True
+    print("Press SPACE start move.")
     while window.running:
         window.GUI.begin("Statistics", 0.03, 0.05, 0.2, 0.12)
         window.GUI.text("Date: " + ss.get_date())

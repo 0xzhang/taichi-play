@@ -6,11 +6,11 @@
 
 ### [Game of Life](game_of_life/)
 
-![gol](game_of_life/imgs/gol.gif)
+<a href="gol.gif"><img src="game_of_life/imgs/gol.gif" height=512px title="random"></a>
 
 ### [Solar System](solar_system/)
 
-![ss](solar_system/imgs/ss.gif)
+<a href="ss.gif"><img src="solar_system/imgs/ss.gif" height=512px title="solar system">
 
 ## 整体结构
 
