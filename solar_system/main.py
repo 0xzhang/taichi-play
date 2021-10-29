@@ -1,6 +1,6 @@
 import taichi as ti
 from solar_system import SolarSystem, Sun, Planet
-from datetime import datetime, timedelta
+from datetime import datetime
 
 ti.init(arch=ti.gpu)
 

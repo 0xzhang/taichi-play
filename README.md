@@ -46,7 +46,7 @@
 ## 运行环境
 
 ```
-[Taichi] version 0.8.1, llvm 10.0.0, commit cc2dd342, win, python 3.8.10
+[Taichi] version 0.8.3, llvm 10.0.0, commit 5c4ac743, linux, python 3.8.10
 ```
 
 ### 使用GUI时生成GIF
