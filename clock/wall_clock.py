@@ -19,6 +19,8 @@ def go(gui, continuous=False):
     second = now.second
     minute = now.minute
     hour = now.hour
+    time = now.strftime("%H:%M:%S")
+    gui.text(time, [0.05, 0.95], 30)
 
     # clock body
     gui.circle(gui_center, radius=clock_size * 1.05, color=0xA0522D)
@@ -40,32 +42,26 @@ def go(gui, continuous=False):
             ti.sin(2 * PI * (second + microsecond / 1000000) / 60),
             ti.cos(2 * PI * (second + microsecond / 1000000) / 60)
         ])
-        mins = ti.Vector([
-            ti.sin(2 * PI * (minute + second / 60) / 60),
-            ti.cos(2 * PI * (minute + second / 60) / 60)
-        ])
-        hors = ti.Vector([
-            ti.sin(2 * PI * (hour + minute / 60) / 12),
-            ti.cos(2 * PI * (hour + minute / 60) / 12)
-        ])
     else:
         secs = ti.Vector(
             [ti.sin(2 * PI * second / 60),
              ti.cos(2 * PI * second / 60)])
-        mins = ti.Vector(
-            [ti.sin(2 * PI * minute / 60),
-             ti.cos(2 * PI * minute / 60)])
-        hors = ti.Vector(
-            [ti.sin(2 * PI * hour / 12),
-             ti.cos(2 * PI * hour / 12)])
 
     # seconds hand
     secs = secs * scale * 0.9 + 0.5
     gui.line(gui_center, secs, radius=2, color=0xB22222)
     # minutes hand
+    mins = ti.Vector([
+        ti.sin(2 * PI * (minute + second / 60) / 60),
+        ti.cos(2 * PI * (minute + second / 60) / 60)
+    ])
     mins = mins * scale * 0.7 + 0.5
     gui.line(gui_center, mins, radius=3, color=0x000000)
     # hours hand
+    hors = ti.Vector([
+        ti.sin(2 * PI * (hour + minute / 60) / 12),
+        ti.cos(2 * PI * (hour + minute / 60) / 12)
+    ])
     hors = hors * scale * 0.4 + 0.5
     gui.line(gui_center, hors, radius=4, color=0x000000)
 
@@ -74,10 +70,11 @@ def go(gui, continuous=False):
     gui.circle(gui_center, radius=clock_size * 0.04, color=0xC0C0C0)
 
 
-gui = ti.GUI("Canvas", res=(size, size), background_color=0x112F41)
+gui = ti.GUI("Wall Clock", res=(size, size), background_color=0x112F41)
 continuous = False
 switch = gui.button('switch')
 
+# for i in range(7200):
 while gui.running:
     for e in gui.get_events():
         if e.key == ti.GUI.ESCAPE:
@@ -87,3 +84,10 @@ while gui.running:
 
     go(gui, continuous)
     gui.show()
+
+    # if i%15 == 0:
+    #     filename = f'frame_{i:05d}.png'
+    #     print(f'Frame {i} is recorded in {filename}')
+    #     gui.show(filename)
+    # else:
+    #     gui.show()
