@@ -6,7 +6,6 @@ ti.init()
 size = 512
 clock_size = size // 3
 scale = clock_size / size
-pixels = ti.Vector.field(3, ti.f32, shape=(size, size))
 center = ti.Vector([size // 2, size // 2])
 gui_center = ti.Vector([0.5, 0.5])
 PI = 3.141592653589
