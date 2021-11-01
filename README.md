@@ -16,6 +16,8 @@
 
 <a href="wall_clock.gif"><img src="clock/imgs/wall_clock.gif" height=512px title="wall clock">
 
+<a href="digi_clock.gif"><img src="clock/imgs/digi_clock.gif" height=512px title="digi clock">
+
 ## 整体结构
 
 ```
@@ -36,8 +38,10 @@
 │   └── imgs
 │       └── ss.gif
 ├── clock
+│   ├── digi_clock.py
 │   ├── wall_clock.py
 │   ├── imgs
+│   │   ├── digi_clock.gif
 │   │   └── wall_clock.gif
 │   └── README.md
 └── README.md
