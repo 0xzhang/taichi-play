@@ -121,6 +121,12 @@ NASA的图像纹理[资源](https://nasa3d.arc.nasa.gov/images)。
 
 这是一个牛顿n体[重力模拟器](https://gravitysimulator.org/)，不仅仅能够仿真太阳系，可以做很多东西，提供了丰富的示例程序。
 
+#### [3D Solar System Simulator](https://theskylive.com/3dsolarsystem)
+
+> by TheSkyLive.com
+
+3D的实时太阳系仿真系统，简单漂亮。
+
 #### [Solar system orrery (Atlas Digital)](https://atlas-digital.nl/live/solar/)
 
 > by Jeroen Gommers (NED)
