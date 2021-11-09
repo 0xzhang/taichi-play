@@ -46,8 +46,11 @@ if __name__ == '__main__':
     init()
 
     while gui.running:
+    # for i in range(1000):
         evolve()
-
         # A handy method learned from "taichi examples: game_of_life" for zoom in the frame.
         gui.set_image(ti.imresize(cells, M * N).astype(np.uint8) * 255)
+        # filename = f'frame_{i:05d}.png'
+        # print(f'Frame {i} is recorded in {filename}')
+        # gui.show(filename)
         gui.show()
